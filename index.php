@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-            echo "The Web Server is working";
+            require_once (__DIR__ . '/controller/create-db.php');   //connects to create-db.php file     
         ?>
     </body>
 </html>
