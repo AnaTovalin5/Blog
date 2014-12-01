@@ -5,8 +5,18 @@
     
     if ($connection->connect_error) {   //watches for connection error
         die("Error: ". $connection->connect_error); //kills connection if there is an error
+    }
+    
+    $exists = $connection->select_db($database);  //stores value of TRUE or FALSE that the database does or does not exists
+    
+    if(!$exists) { //checks if the database doesn't exist
+       $query = $connection->query("CREATE DATABASE $database"); //Creates database and stores result into query 
+    
+       if($query) { //checks if the query was true
+           echo "Successfully created database: " . $database; //if true then a success message is displayed onto the screen
+       }
     } else {
-        echo "Success". $connection->host_info; //successful connection message
+        echo "Database already exists."; //if false then already exists message is displayed onto the screen
     }
     
     $connection->close(); //closes server connection
